@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Semantic UI CSS -->
+  <link rel="stylesheet" type="text/css" href="/node_modules/semantic-ui-css/semantic.min.css">
+  <!-- <link href="//ui.piterator.xyz/quligem-ui/css/quligem.css" rel="stylesheet" /> -->
+
+  <title>校园智障英语</title>
+
+  <style>
+    .ui.menu .item img.logo {
+      margin-right: 1.5em;
+    }
+
+    .main.container {
+      margin-top: 6em;
+    }
+
+    section {
+      margin-top: 2em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ui fixed inverted menu">
+    <div class="ui text container">
+      <a href="https://www.piterator.com/" class="header item">
+        <img class="logo" src="https://static.piterator.com/logo.min.svg" />
+        Piterator
+      </a>
+      <a href="https://xyzzyy.piterator.com/" class="item">校园智障英语</a>
+    </div>
+  </div>
+
+  <div class="ui main text container">
+    <h1 class="ui centered header">校园智障英语</h1>
+    <div class="ui divider"></div>
+    <section id="xyzzyy">
+      <!-- <input type="radio" id="exam" value="exam" v-model="action" />
+        <label for="exam">Exam</label>
+        <input type="radio" id="word-train" value="word train" v-model="action" />
+        <label for="word-train">Word train</label>
+        <p>Action: {{ action }}</p> -->
+      <!-- <input class="input" placeholder="姓名" v-model="name" /> -->
+      <div class="ui grid">
+        <select class="left floated column ui search selection dropdown" v-model="user" v-on:change="fetch">
+          <option value="">姓名</option>
+          <option v-for="student in students" :value="student.iUserId">{{ student.sName }}</option>
+        </select>
+        <div class="right floated column ui slider checkbox" style="width: auto;">
+          <input type="checkbox" id="all" v-model="all" v-on:change="fetch" />
+          <label for="all">所有</label>
+        </div>
+      </div>
+      <div class="ui items">
+        <div class="item" v-for="exam in exams">
+          <div class="content">
+            <h3 class="header" v-for="content in exam.aContent">{{ content.sTitle }}</h3>
+            <div class="meta" v-for="content in exam.aContent">{{ content.sGroup }}</div>
+            <ol>
+              <li v-for="process in exam.aProcess" :value="process.iOrder">
+                <span tabindex="0">{{ process.sAnswer }}</span>
+                <div class="ui label">{{ process.iScore }} 分</div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ui divider"></div>
+    <section>
+      <h2 class="ui header">免责声明</h2>
+      <p>本平台仅供学习参考使用，其可能带来的任何后果运营方概不负责，使用则表示您同意获取您的作业信息。</p>
+      <p>所有数据均来自“校园智慧英语”平台，Piterator 位于阿里云上海数据中心的服务器不作存储。</p>
+      <p>
+        根据<b>《中华人民共和国网络安全法》第四章 第四十一条</b>“网络运营者......公开收集、使用规则，明示收集、使用信息的目的、方式和范围”之规定，现予公示：<br /><b>规则和方式：</b>触发 AJAX
+        请求时请求校园智慧英语平台接口。<br /><b>目的：</b>鉴别用户群组。<br /><b>范围：</b>数据仅包含用户姓名、性别。
+      </p>
+    </section>
+
+    <section id="licenses">
+      <h2 class="ui header">Copyright Notices and License Terms (许可协议和版权声明)</h2>
+      <div class="ui items">
+        <div class="item" v-for="license in licenses">
+          <div class="content" style="width: inherit;">
+            <a class="header" :href="license.path">{{ license.header }}</a>
+            <div class="description">
+              <pre style="overflow-y: auto;">{{ license.content }}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Required JavaScript -->
+  <!-- jQuery first, then Semantic UI JS -->
+  <script src="/node_modules/jquery/dist/jquery.slim.min.js"></script>
+  <script src="/node_modules/semantic-ui-css/semantic.min.js"></script>
+  <script src="/node_modules/vue/dist/vue.js"></script>
+  <script src="/node_modules/axios/dist/axios.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      var xyzzyy = new Vue({
+        el: '#xyzzyy',
+        data: {
+          // action: '',
+          all: undefined,
+          exams: [],
+          user: '',
+          students: undefined
+        },
+        mounted() {
+          axios.get('/data/http/114.118.97.15/site_20180305000000/students/').then(function (response) {
+            xyzzyy.students = response.data;
+            $('.ui.dropdown').dropdown();
+          })
+        },
+        methods: {
+          fetch() {
+            if (xyzzyy.user) {
+              axios.get('/data/http/114.118.97.15/site_20180305000000/exams/', { params: { user: xyzzyy.user, all: xyzzyy.all } }).then(function (response) {
+                if (xyzzyy.user == response.config.params.user && xyzzyy.all == response.config.params.all) {
+                  xyzzyy.exams = response.data;
+                }
+              })
+            }
+          }
+        }
+      })
+
+      var licenses = new Vue({
+        el: '#licenses',
+        data: {
+          licenses: []
+        },
+        mounted() {
+          axios.get('/licenses/').then(function (response) {
+            licenses.licenses = response.data;
+          })
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

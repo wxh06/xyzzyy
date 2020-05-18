@@ -1,0 +1,2 @@
+-e git+https://github.com/wangxinhe2006/xyzzyy-cli.git#egg=xyzzyy
+flask<2,>=1
