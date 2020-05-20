@@ -63,8 +63,12 @@
         </div>
       </div>
       <div class="ui attached error message" v-if="error">{{ error }}</div>
-      <div class="ui segment items" :class="error ? 'attached' : ''">
+      <h3 class="ui warning message" v-if="!user">↑ 请点击下拉菜单选择姓名！</h3>
+      <div class="ui message" :class="user ? 'attached' : ''" v-if="loading">
         <div class="ui active inline centered loader" v-if="loading"></div>
+      </div>
+      <div class="ui segment items" :class="loading || error ? 'attached' : ''" v-if="user">
+        <div class="ui message" v-if="!exams.length">空空如也</div>
         <div class="item" v-for="exam in exams">
           <div class="content">
             <h3 class="header" v-for="content in exam.aContent">{{ content.sTitle }}</h3>
@@ -120,7 +124,7 @@
         data: {
           // action: '',
           all: undefined,
-          error: undefined,
+          error: '',
           exam: undefined,
           exams: [],
           loading: undefined,
@@ -136,7 +140,7 @@
         methods: {
           fetch() {
             if (xyzzyy.user) {
-              xyzzyy.error = false;
+              xyzzyy.error = '';
               xyzzyy.loading = true;
               axios.get('/data/http/114.118.97.15/site_20180305000000/exams/', { params: { user: xyzzyy.user, all: xyzzyy.all, exam: xyzzyy.exam } }).then(function (response) {
                 if (xyzzyy.user == response.config.params.user && xyzzyy.all == response.config.params.all) {
