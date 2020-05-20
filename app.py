@@ -33,7 +33,8 @@ def exams(scheme, netloc, database):
                 urlunsplit((scheme, netloc, '', '', '')),
                 f"iUserId={request.args.get('user')}&iGroupId=300&sDatabase={database}"
             ),
-            {None: None, 'true': True, 'false': False}[request.args.get('all')]
+            {None: None, 'true': True, 'false': False}[request.args.get('all')],
+            {None: '0', 'true': '1', 'false': '0'}[request.args.get('exam')]
         )
     )
 

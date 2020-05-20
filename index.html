@@ -54,6 +54,10 @@
           <option v-for="student in students" :value="student.iUserId">{{ student.sName }}</option>
         </select>
         <div class="right floated column ui slider checkbox" style="width: auto;">
+          <input type="checkbox" id="exam" v-model="exam" v-on:change="fetch" />
+          <label for="exam">考试</label>
+        </div>
+        <div class="right floated column ui slider checkbox" style="width: auto;">
           <input type="checkbox" id="all" v-model="all" v-on:change="fetch" />
           <label for="all">所有</label>
         </div>
@@ -114,6 +118,7 @@
         data: {
           // action: '',
           all: undefined,
+          exam: undefined,
           exams: [],
           user: '',
           students: undefined
@@ -127,7 +132,7 @@
         methods: {
           fetch() {
             if (xyzzyy.user) {
-              axios.get('/data/http/114.118.97.15/site_20180305000000/exams/', { params: { user: xyzzyy.user, all: xyzzyy.all } }).then(function (response) {
+              axios.get('/data/http/114.118.97.15/site_20180305000000/exams/', { params: { user: xyzzyy.user, all: xyzzyy.all, exam: xyzzyy.exam } }).then(function (response) {
                 if (xyzzyy.user == response.config.params.user && xyzzyy.all == response.config.params.all) {
                   xyzzyy.exams = response.data;
                 }
