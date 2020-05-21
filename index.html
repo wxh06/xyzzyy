@@ -40,8 +40,11 @@
 
   <div class="ui main text container">
     <h1 class="ui centered header">校园智障英语</h1>
-    <div class="ui divider"></div>
-    <section id="xyzzyy">
+    <div class="ui pointing secondary menu">
+      <a class="item active" data-tab="exam">Exam</a>
+      <a class="item" data-tab="licenses">Licenses</a>
+    </div>
+    <div id="xyzzyy" class="ui active tab" data-tab="exam">
       <!-- <input type="radio" id="exam" value="exam" v-model="action" />
         <label for="exam">Exam</label>
         <input type="radio" id="word-train" value="word train" v-model="action" />
@@ -49,17 +52,25 @@
         <p>Action: {{ action }}</p> -->
       <!-- <input class="input" placeholder="姓名" v-model="name" /> -->
       <div class="ui grid">
-        <select class="left floated column ui search selection dropdown" v-model="user" v-on:change="fetch">
-          <option value="">姓名</option>
-          <option v-for="student in students" :value="student.iUserId">{{ student.sName }}</option>
-        </select>
-        <div class="right floated column ui slider checkbox" style="width: auto;">
-          <input type="checkbox" id="exam" v-model="exam" v-on:change="fetch" />
-          <label for="exam">考试</label>
-        </div>
-        <div class="right floated column ui slider checkbox" style="width: auto;">
-          <input type="checkbox" id="all" v-model="all" v-on:change="fetch" />
-          <label for="all">所有</label>
+        <div class="row">
+          <div class="left floated column">
+            <select class="ui search selection dropdown" v-model="user" v-on:change="fetch">
+              <option value="">姓名</option>
+              <option v-for="student in students" :value="student.iUserId">{{ student.sName }}</option>
+            </select>
+          </div>
+          <div class="right floated column" style="width: auto; top: 20%;">
+            <div class="ui slider checkbox">
+              <input type="checkbox" id="exam" v-model="exam" v-on:change="fetch" />
+              <label for="exam">考试</label>
+            </div>
+          </div>
+          <div class="right floated column" style="width: auto; top: 20%;">
+            <div class="ui slider checkbox">
+              <input type="checkbox" id="all" v-model="all" v-on:change="fetch" />
+              <label for="all">所有</label>
+            </div>
+          </div>
         </div>
       </div>
       <div class="ui attached error message" v-if="error">{{ error }}</div>
@@ -82,32 +93,34 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <div class="ui divider"></div>
-    <section>
-      <h2 class="ui header">免责声明</h2>
-      <p>本平台仅供学习参考使用，其可能带来的任何后果运营方概不负责，使用则表示您同意获取您的作业信息。</p>
-      <p>所有数据均来自“校园智慧英语”平台，Piterator 位于阿里云上海数据中心的服务器不作存储。</p>
-      <p>
-        根据<b>《中华人民共和国网络安全法》第四章 第四十一条</b>“网络运营者......公开收集、使用规则，明示收集、使用信息的目的、方式和范围”之规定，现予公示：<br /><b>规则和方式：</b>触发 AJAX
-        请求时请求校园智慧英语平台接口。<br /><b>目的：</b>鉴别用户群组。<br /><b>范围：</b>数据仅包含用户姓名、性别。
-      </p>
-    </section>
+      <div class="ui divider"></div>
+      <section>
+        <h2 class="ui header">免责声明</h2>
+        <p>本平台仅供学习参考使用，其可能带来的任何后果运营方概不负责，使用则表示您同意获取您的作业信息。</p>
+        <p>所有数据均来自“校园智慧英语”平台，Piterator 位于阿里云上海数据中心的服务器不作存储。</p>
+        <p>
+          根据<b>《中华人民共和国网络安全法》第四章 第四十一条</b>“网络运营者......公开收集、使用规则，明示收集、使用信息的目的、方式和范围”之规定，现予公示：<br /><b>规则和方式：</b>触发 AJAX
+          请求时请求校园智慧英语平台接口。<br /><b>目的：</b>鉴别用户群组。<br /><b>范围：</b>数据仅包含用户姓名、性别。
+        </p>
+      </section>
+    </div>
 
-    <section id="licenses">
-      <h2 class="ui header">Copyright Notices and License Terms (许可协议和版权声明)</h2>
-      <div class="ui items">
-        <div class="item" v-for="license in licenses">
-          <div class="content" style="width: inherit;">
-            <a class="header" :href="license.path">{{ license.header }}</a>
-            <div class="description">
-              <pre style="overflow-y: auto;">{{ license.content }}</pre>
+    <div class="ui tab" data-tab="licenses">
+      <div id="licenses">
+        <h2 class="ui header">Copyright Notices and License Terms (许可协议和版权声明)</h2>
+        <div class="ui items">
+          <div class="item" v-for="license in licenses">
+            <div class="content" style="width: inherit;">
+              <a class="header" :href="license.path">{{ license.header }}</a>
+              <div class="description">
+                <pre style="overflow-y: auto;">{{ license.content }}</pre>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </div>
 
   <!-- Required JavaScript -->
@@ -132,6 +145,7 @@
           students: undefined
         },
         mounted() {
+          $('.menu .item[data-tab]').tab();
           axios.get('/data/http/114.118.97.15/site_20180305000000/students/').then(function (response) {
             xyzzyy.students = response.data;
             $('.ui.dropdown').dropdown();
