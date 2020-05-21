@@ -127,6 +127,7 @@
   <!-- jQuery first, then Semantic UI JS -->
   <script src="/node_modules/jquery/dist/jquery.slim.min.js"></script>
   <script src="/node_modules/semantic-ui-css/semantic.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/asual/jquery-address/src/jquery.address.js"></script>
   <script src="/node_modules/vue/dist/vue.js"></script>
   <script src="/node_modules/axios/dist/axios.min.js"></script>
 
@@ -145,7 +146,7 @@
           students: undefined
         },
         mounted() {
-          $('.menu .item[data-tab]').tab();
+          $('.menu .item[data-tab]').tab({history : true, historyType: 'hash'});
           axios.get('/data/http/114.118.97.15/site_20180305000000/students/').then(function (response) {
             xyzzyy.students = response.data;
             $('.ui.dropdown').dropdown();
