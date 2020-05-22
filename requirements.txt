@@ -1,2 +1,2 @@
--e git+https://github.com/wangxinhe2006/xyzzyy-cli.git#egg=xyzzyy
+-e git+https://github.com/wxh06/xyzzyy-cli.git#egg=xyzzyy
 flask<2,>=1
