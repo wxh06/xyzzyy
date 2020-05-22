@@ -92,7 +92,7 @@
       <div class="ui segment items" :class="loading || error ? 'attached' : ''" v-if="user">
         <div class="ui message" v-if="!exams.length">空空如也</div>
         <div class="item" v-for="exam in exams">
-          <div class="content">
+          <div class="content" v-if="exam">
             <h3 class="header" v-for="content in exam.aContent">{{ content.sTitle }}</h3>
             <div class="meta" v-for="content in exam.aContent">{{ content.sGroup }}</div>
             <ol>
