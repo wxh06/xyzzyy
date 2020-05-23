@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, send_file, send_from_directory
 from os import listdir, path
 from urllib.parse import urlunsplit
 import xyzzyy
+from elp.session import Student
 
 
 app = Flask(
@@ -36,6 +37,18 @@ def exams(scheme, netloc, database):
             {None: None, 'true': True, 'false': False}[request.args.get('all')],
             {None: '0', 'true': '1', 'false': '0'}[request.args.get('exam')]
         )
+    )
+
+
+@app.route('/elp/')
+def elp():
+    s = Student()
+    s.login(request.args.get('username'), request.args.get('password'))
+    return jsonify(
+        [
+            s.homework_summary(examId=i['examination_id'])
+            for i in s.homework_task_list()['items']
+        ]
     )
 
 

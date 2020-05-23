@@ -55,6 +55,7 @@
     </div>
     <div class="ui pointing secondary menu">
       <a class="item active" data-tab="exam">Exam</a>
+      <a class="item" data-tab="elp">ELP</a>
       <a class="item" data-tab="licenses">Licenses</a>
     </div>
     <div id="xyzzyy" class="ui active tab" data-tab="exam">
@@ -117,6 +118,21 @@
           请求时请求校园智慧英语平台接口。<br /><b>目的：</b>鉴别用户群组。<br /><b>范围：</b>数据仅包含用户姓名、性别。
         </p>
       </section>
+    </div>
+
+    <div class="ui tab" data-tab="elp">
+      <div id="elp">
+        <form class="ui form" @submit.prevent @submit="fetch">
+          <div class="ui input">
+            <input type="text" placeholder="用户名" v-model="username">
+          </div>
+          <div class="ui input">
+            <input type="password" placeholder="密码" v-model="password">
+          </div>
+          <button type="submit" class="ui button" :class="(loading ? 'loading disabled' : '') + ' ' + (error ? 'negative' : '')">查询</button>
+        </form>
+        <div class="ui segment">{{ articles }}</div>
+      </div>
     </div>
 
     <div class="ui tab" data-tab="licenses">
@@ -195,6 +211,30 @@
                 xyzzyy.error = e;
               });
             }
+          },
+        },
+      });
+
+      const elp = new window.Vue({
+        el: '#elp',
+        data: {
+          articles: [],
+          error: false,
+          loading: false,
+          password: '',
+          username: '',
+        },
+        methods: {
+          fetch() {
+            elp.error = false;
+            elp.loading = true;
+            window.axios.get('/elp/', { params: { username: elp.username, password: elp.password } }).then((response) => {
+              elp.articles = response.data;
+              elp.loading = false;
+            }).catch(() => {
+              elp.loading = false;
+              elp.error = true;
+            });
           },
         },
       });

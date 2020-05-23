@@ -1,2 +1,3 @@
 -e git+https://github.com/wxh06/xyzzyy-cli.git#egg=xyzzyy
+-e git+https://github.com/wxh06/elp-cli.git#egg=elp
 flask<2,>=1
