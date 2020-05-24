@@ -133,7 +133,20 @@
           </div>
           <button type="submit" class="ui button" :class="(loading ? 'loading disabled' : '') + ' ' + (error ? 'negative' : '')">查询</button>
         </form>
-        <div class="ui segment">{{ articles }}</div>
+        <div class="ui segment items">
+          <div class="item" v-for="item in articles">
+            <div class="content">
+              <div class="ui items" v-for="article in item.items">
+                <h3 class="header">{{ article.content_title }}</h3>
+                <ol class="ui list">
+                  <li v-for="question in article.question" :value="question.question_no">
+                    <span tabindex="0">{{ question.answer }}</span>
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
