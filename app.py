@@ -16,6 +16,11 @@ def index():
     return send_file('index.html')
 
 
+@app.route('/index.js')
+def js():
+    return send_file('index.js')
+
+
 @app.route('/data/<string:scheme>/<string:netloc>/<string:database>/students/')
 def students(scheme, netloc, database):
     return jsonify(

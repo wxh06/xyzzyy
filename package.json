@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "校园智障英语",
   "scripts": {
-    "test": "htmlhint . && eslint --ext html ."
+    "test": "htmlhint . && eslint ."
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,6 @@
   "devDependencies": {
     "eslint": "^5.16.0 || ^6.8.0",
     "eslint-config-airbnb-base": "latest",
-    "eslint-plugin-html": "latest",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-vue": "latest",
     "htmlhint": "latest"
