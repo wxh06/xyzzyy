@@ -1,7 +1,7 @@
 FROM alpine
 
 
-RUN [ "apk", "add", "apache2-mod-wsgi", "git" ]
+RUN [ "apk", "add", "apache2-mod-wsgi", "py3-pip", "git" ]
 
 COPY . /var/www/xyzzyy
 RUN cat /var/www/xyzzyy/apache2.conf >> /etc/apache2/httpd.conf
