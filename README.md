@@ -10,7 +10,7 @@
 校园智障英语
 
 ## Installation
-### Docker
+### Via [Docker](https://www.docker.com/)
 #### From [Docker Hub](https://hub.docker.com/)
 [wangxinhe/xyzzyy - Docker Hub](https://hub.docker.com/r/wangxinhe/xyzzyy)
 ```sh
@@ -23,14 +23,42 @@ docker pull wangxinhe/xyzzyy
 docker pull docker.pkg.github.com/wxh06/xyzzyy/xyzzyy:latest
 ```
 
-### Source
-[wxh06/xyzzyy: 校园智障英语](https://github.com/wxh06/xyzzyy)
+### From [source](https://github.com/wxh06/xyzzyy)
 1. Clone via [Git](https://www.git-scm.com/)
 ```sh
 git clone https://github.com/wxh06/xyzzyy.git
 ```
+
 2. Install Dependencies via [pip](https://pip.pypa.io/) & [npm](https://www.npmjs.com/)
 ```sh
 pip install -r requirements.txt
 npm i
+```
+
+## Usage
+## [Flask](https://palletsprojects.com/p/flask/)
+```sh
+export FLASK_APP=app.py
+python -m flask run
+```
+Then head over to <http://127.0.0.1:5000/>.
+
+### [mod_wsgi](https://www.modwsgi.org/) in Docker
+If you've already pulled the Docker image, try
+```sh
+docker run -d -p 8080:80 -t wangxinhe/xyzzyy
+```
+
+Then you'll get:
+```sh
+$ curl -I 127.0.0.1:8080/
+HTTP/1.1 200 OK
+Date: ...
+Server: Apache/2.4 (Unix)
+Content-Length: ...
+Last-Modified: ...
+Cache-Control: public, max-age=43200
+Expires: ...
+ETag: "..."
+Content-Type: text/html; charset=utf-8
 ```
