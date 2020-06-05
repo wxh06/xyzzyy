@@ -36,14 +36,19 @@ npm i
 ```
 
 ## Usage
-## [Flask](https://palletsprojects.com/p/flask/)
+### [Flask](https://palletsprojects.com/p/flask/)
 ```sh
 export FLASK_APP=app.py
 python -m flask run
 ```
 Then head over to <http://127.0.0.1:5000/>.
 
-### [mod_wsgi](https://www.modwsgi.org/) in Docker
+### [Apache HTTP Server](https://httpd.apache.org/) via [mod_wsgi](https://www.modwsgi.org/)
+```apacheconf
+WSGIScriptAlias / /path/to/xyzzyy/wsgi.py
+```
+
+### Apache HTTPD in Docker
 If you've already pulled the Docker image, try
 ```sh
 docker run -d -p 8080:80 -t wangxinhe/xyzzyy
