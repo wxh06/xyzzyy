@@ -8,3 +8,17 @@
 [![License](https://img.shields.io/github/license/wxh06/xyzzyy.svg?logo=github)](https://github.com/wxh06/xyzzyy/blob/master/LICENSE)
 
 校园智障英语
+
+## Installation
+### Docker
+#### Docker Hub
+[wangxinhe/xyzzyy - Docker Hub](https://hub.docker.com/r/wangxinhe/xyzzyy)
+```sh
+docker pull wangxinhe/xyzzyy
+```
+
+#### GitHub Packages
+[Package xyzzyy · wxh06/xyzzyy](https://github.com/wxh06/xyzzyy/packages/242235)
+```sh
+docker pull docker.pkg.github.com/wxh06/xyzzyy/xyzzyy:latest
+```
