@@ -5,6 +5,7 @@
 [![Build Status](https://travis-ci.com/wxh06/xyzzyy.svg)](https://travis-ci.com/wxh06/xyzzyy)
 [![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/wangxinhe/xyzzyy?logo=docker)](https://hub.docker.com/r/wangxinhe/xyzzyy/builds)
 [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/wangxinhe/xyzzyy?logo=docker)](https://hub.docker.com/r/wangxinhe/xyzzyy/builds)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9715e57885ece16b7359/maintainability)](https://codeclimate.com/github/wxh06/xyzzyy/maintainability)
 [![License](https://img.shields.io/github/license/wxh06/xyzzyy.svg?logo=github)](https://github.com/wxh06/xyzzyy/blob/master/LICENSE)
 
 校园智障英语
