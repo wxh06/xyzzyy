@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "校园智障英语",
   "scripts": {
-    "test": "make test"
+    "test": "make npm-test"
   },
   "repository": {
     "type": "git",

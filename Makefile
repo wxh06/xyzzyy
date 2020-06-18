@@ -1,4 +1,6 @@
-test: htmlhint eslint pycodestyle
+test: npm-test pycodestyle
+
+npm-test: htmlhint eslint
 
 htmlhint:
 	htmlhint .
