@@ -10,6 +10,10 @@
 
 校园智障英语
 
+## Dependencies
+- [wxh06/xyzzyy-cli](https://github.com/wxh06/xyzzyy-cli)
+- [wxh06/elp-cli](https://github.com/wxh06/elp-cli)
+
 ## Installation
 ### Via [Docker](https://www.docker.com/)
 #### From [Docker Hub](https://hub.docker.com/)
