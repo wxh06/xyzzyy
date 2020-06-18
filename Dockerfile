@@ -1,5 +1,7 @@
 FROM alpine
 
+LABEL maintainer="汪心禾 <wangxinhe06@gmail.com>"
+
 
 RUN [ "apk", "add", "--no-cache", "apache2-mod-wsgi", "py3-pip", "npm", "git" ]
 
