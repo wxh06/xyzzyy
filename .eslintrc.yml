@@ -2,10 +2,9 @@ env:
   browser: true
   es6: true
   jquery: true
-extends: airbnb-base
+extends:
+  - airbnb-base
 globals:
   Atomics: readonly
   SharedArrayBuffer: readonly
-plugins:
-  - vue
 rules: {}
