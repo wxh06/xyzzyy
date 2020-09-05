@@ -132,10 +132,10 @@
       <div id="elp">
         <form class="ui form" @submit.prevent @submit="fetch">
           <div class="ui input">
-            <input type="text" placeholder="用户名" v-model="username">
+            <input type="text" placeholder="用户名" autocomplete="username" v-model="username">
           </div>
           <div class="ui input">
-            <input type="password" placeholder="密码" v-model="password">
+            <input type="password" placeholder="密码" autocomplete="current-password" v-model="password">
           </div>
           <button type="submit" class="ui button" :class="(loading ? 'loading disabled' : '') + ' ' + (error ? 'negative' : '')">查询</button>
         </form>
