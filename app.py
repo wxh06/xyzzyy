@@ -59,7 +59,7 @@ def elp():
 
 @app.route('/licenses/')
 def licenses():
-    return jsonify([{'header': f[:f.rindex('.')], 'path': f'/licenses/{f}', 'content': open(path.join(path.dirname(__file__), 'licenses', f)).read()} for f in sorted(listdir(path.join(path.dirname(__file__), 'licenses')), key=str.casefold)])
+    return jsonify([{'header': f[:f.rindex('.')], 'path': f'/licenses/{f}', 'content': open(path.join(path.dirname(__file__), 'licenses', f), 'rb').read().decode()} for f in sorted(listdir(path.join(path.dirname(__file__), 'licenses')), key=str.casefold)])
 
 
 @app.route('/licenses/<path:path>')
