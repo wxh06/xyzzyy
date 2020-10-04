@@ -102,14 +102,18 @@
       </div>
       <div class="ui segment items" :class="loading || error ? 'attached' : ''" v-if="user">
         <div class="ui message" v-if="!exams.length">空空如也</div>
-        <div class="item" v-for="exam in exams">
+        <div class="item" v-for="(exam, i) in exams">
           <div class="content" v-if="exam">
             <h3 class="header" v-for="content in exam.aContent">{{ content.sTitle }}</h3>
             <div class="meta" v-for="content in exam.aContent">{{ content.sGroup }}</div>
             <ol>
-              <li v-for="process in exam.aProcess" :value="process.iOrder">
-                <span tabindex="0">{{ process.sAnswer }}</span>
-                <div class="ui label">{{ process.iScore }} 分</div>
+              <li v-for="(process, j) in exam.aProcess" :value="process.iOrder">
+                <div class="ui left icon right labeled input" style="width: 100%;">
+                  <!-- <i class="circular search link icon"></i> -->
+                  <input type="text" readonly :value="process.sAnswer" :name="`${i}_${j}`" />
+                  <div class="ui label">{{ process.iScore }} 分</div>
+                  <i class="circular clipboard link icon" :data-clipboard-target="`input[name='${i}_${j}']`"></i>
+                </div>
               </li>
             </ol>
           </div>
@@ -246,6 +250,7 @@ SOFTWARE.
   <script src="https://cdn.jsdelivr.net/gh/asual/jquery-address/src/jquery.address.js"></script>
   <script src="/node_modules/vue/dist/vue.js"></script>
   <script src="/node_modules/axios/dist/axios.min.js"></script>
+  <script src="/node_modules/clipboard/dist/clipboard.min.js" onload="new ClipboardJS('i[data-clipboard-target]');"></script>
 
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async src="https://buttons.github.io/buttons.js"></script>
