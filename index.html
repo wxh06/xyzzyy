@@ -102,12 +102,12 @@
       </div>
       <div class="ui segment items" :class="loading || error ? 'attached' : ''" v-if="user">
         <div class="ui message" v-if="!exams.length">空空如也</div>
-        <div class="item" v-for="(exam, i) in exams">
-          <div class="content" v-if="exam">
+        <div class="item" v-for="(exam, i) in exams" v-if="exam && (exam.aContent || exam.aProcess)">
+          <div class="content">
             <h3 class="header" v-for="content in exam.aContent">{{ content.sTitle }}</h3>
             <div class="meta" v-for="content in exam.aContent">{{ content.sGroup }}</div>
             <ol>
-              <li v-for="(process, j) in exam.aProcess" :value="process.iOrder">
+              <li v-for="(process, j) in exam.aProcess" v-if="process.iScore != '0'" :value="process.iOrder">
                 <div class="ui left icon right labeled input" style="width: 100%;">
                   <!-- <i class="circular search link icon"></i> -->
                   <input type="text" readonly :value="process.sAnswer" :name="`${i}_${j}`" />
