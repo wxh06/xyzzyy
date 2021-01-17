@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:latest
 
 LABEL maintainer="汪心禾 <wangxinhe06@gmail.com>"
 
