@@ -1,9 +1,9 @@
-from flask import Flask, jsonify, request, send_file, send_from_directory
 from os import listdir, path
 from urllib.parse import urlunsplit
+
 import xyzzyy
 from elp.session import Student
-
+from flask import Flask, jsonify, request, send_file, send_from_directory
 
 app = Flask(
     __name__, static_url_path="/node_modules", static_folder="node_modules"
@@ -36,7 +36,8 @@ def exams(scheme, netloc, database):
         xyzzyy.actions.exam(
             xyzzyy.session.Session(
                 urlunsplit((scheme, netloc, "", "", "")),
-                f"iUserId={request.args.get('user')}&iGroupId=300&sDatabase={database}",
+                f"iUserId={request.args.get('user')}&iGroupId=300"
+                f"&sDatabase={database}",
             ),
             {None: None, "true": True, "false": False}[
                 request.args.get("all")
