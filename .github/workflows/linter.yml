@@ -56,7 +56,7 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter@v3
         env:
-          PYTHONPATH:
-            '/github/workspace:/github/workflow/.venv/lib/python3.9/site-packages'
+          PYTHONPATH: '/github/workspace:/github/workflow/.venv/lib/python3.9/site-packages:/github/workflow/.venv/src/xyzzyy:/github/workflow/.venv/src/elp'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_DOCKERFILE: false
           VALIDATE_JAVASCRIPT_STANDARD: false
